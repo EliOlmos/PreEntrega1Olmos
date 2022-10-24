@@ -5,6 +5,8 @@ let dia,
   mes,
   anio,
   hora = 0;
+let costo=1400;
+let duracion=0;
 
 function login() {
   let ingresar = false;
@@ -41,9 +43,10 @@ if (login()) {
         mes = parseInt(prompt("Ingrese el mes de su reserva mm"));
         anio = parseInt(prompt("Ingrese el año de su reserva aaaa"));
         hora = parseInt(prompt("Ingrese la hora de su reserva hh"));
+        duracion = parseInt(prompt("Ingrese cantidad de horas de su reserva"));
         alert(
           "Su reserva se ha realizado para el día " +
-            reservar(dia, mes, anio, hora)
+            reservar(dia, mes, anio, hora) + " hasta las "+(hora+duracion)+"hs"+ " y tendrá un costo de $"+calcularAlquiler(duracion)
         );
 
         break;
@@ -132,10 +135,15 @@ if (login()) {
       "Elige una opción para comenzar: \n1- Reservar tu cancha. \n2 - Modificar tu reserva. \n3 - Cancelar tu reserva. \nPresioná S para finalizar."
     );
   }
-  alert("Esperamos volver a verte pronto");
+  alert("Gracias por usar el gestor de reservas, esperamos volver a verte pronto");
 }
 
 function reservar(dia, mes, anio, hora) {
-  let reserva = dia + "/" + mes + "/" + anio + " a las " + hora + " hs";
+  let reserva = dia + "/" + mes + "/" + anio + " desde las " + hora + " hs";
   return reserva;
+}
+
+function calcularAlquiler(duracion) {
+  let calculo = costo * duracion;
+  return calculo;
 }
